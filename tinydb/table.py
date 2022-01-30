@@ -724,13 +724,7 @@ class Table:
         # Perform the table update operation
         updater(table)
 
-        # Convert the document IDs back to strings.
-        # This is required as some storages (most notably the JSON file format)
-        # don't support IDs other than strings.
-        tables[self.name] = {
-            str(doc_id): doc
-            for doc_id, doc in table.items()
-        }
+        tables[self.name] = table
 
         # Write the newly updated data back to the storage
         self._storage.write(tables)
